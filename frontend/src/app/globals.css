@@ -1,33 +1,16 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: "Public Sans";
+  src: url("assets/fonts/PublicSans_Variable.ttf") format("truetype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* TODO: add italic public sans here */
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
+  -webkit-font-smoothing: antialiased !important;
 }
 
 a {
@@ -35,8 +18,58 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+* {
+  font-family: "Public Sans", sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* *:focus-visible {
+  outline: 2px solid var(--primary);
+  transition: outline 0.05s!important;
+}
+
+.toast div {
+  font-weight: 113;
+  font-style: normal;
+  font-size: 1rem;
+} */
+
+:root {
+  --primary: #8B4513;
+  --primary_50: #8B45137f;
+  --primary_25: #8B45133f;
+  --primary_15: #8B45132f;
+  --secondary: #138b89;
+  --accent: #4d8b13;
+  --gray: #d9d9d9;
+  --gray_border: #3F3F3F;
+  --gray_25: #383938;
+  --lightest_blue: #F5F7FA;
+  --blue_gray: #F2F4F2;
+  --dark: black;
+  --dark_80: rgba(0, 0, 0, 0.8);
+  --dark_60: rgba(0, 0, 0, 0.6);
+  --dark_50: rgba(0, 0, 0, 0.5);
+  --dark_35: rgba(0, 0, 0, 0.35);
+  --dark_15: rgba(0, 0, 0, 0.15);
+  --dark_contrast: #1A1A1A;
+  --dark_contrast_shadow: #444E49;
+  --light: white;
+  --light_75: rgba(255, 255, 255, 0.75);
+  --light_50: rgba(255, 255, 255, 0.5);
+  --light_contrast: #F5F5F5;
+  --light_contrast_80: rgba(245, 245, 245, 0.8);
+  --light_contrast_50: rgba(245, 245, 245, 0.5);
+  --light_contrast_shadow: #8C959E;
+  --inline_padding: 2rem;
+  --max_width: 1512px;
+  --min_width: 25rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+      --inline_padding: 1.5rem;
   }
 }
