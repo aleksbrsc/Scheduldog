@@ -22,7 +22,8 @@
               "startTime": "15:00",
               "endTime": "18:00"
             }
-          ]
+          ],
+          "professor": "John Smith"
         },
         {
           "class": "Lab - Section L01",
@@ -38,7 +39,25 @@
               "startTime": "09:00",
               "endTime": "11:00"
             }
-          ]
+          ],
+          "professor": "Jane Doe"
+        },
+        {
+          "class": "Lecture - Section P03",
+          "campus": "Trafalgar",
+          "room": "TRA-S425",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Friday",
+              "startTime": "10:00",
+              "endTime": "13:00"
+            }
+          ],
+          "professor": "Emily TRAis"
         }
       ]
     },
@@ -69,7 +88,30 @@
               "startTime": "13:00",
               "endTime": "16:00"
             }
-          ]
+          ],
+          "professor": "Michael Brown"
+        },
+        {
+          "class": "Lecture - Section P02",
+          "campus": "Trafalgar",
+          "room": "TRA-E105",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Monday",
+              "startTime": "10:00",
+              "endTime": "13:00"
+            },
+            {
+              "day": "Wednesday",
+              "startTime": "10:00",
+              "endTime": "13:00"
+            }
+          ],
+          "professor": "Sarah Johnson"
         }
       ]
     },
@@ -83,8 +125,8 @@
       "sections": [
         {
           "class": "Lecture - Section A01",
-          "campus": "Davis",
-          "room": "DAV-B305",
+          "campus": "Trafalgar",
+          "room": "TRA-B305",
           "termDates": {
             "startDate": "2025-01-06",
             "endDate": "2025-04-17"
@@ -95,7 +137,25 @@
               "startTime": "09:00",
               "endTime": "12:00"
             }
-          ]
+          ],
+          "professor": "William Lee"
+        },
+        {
+          "class": "Lecture - Section A02",
+          "campus": "Trafalgar",
+          "room": "TRA-B306",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Thursday",
+              "startTime": "14:00",
+              "endTime": "17:00"
+            }
+          ],
+          "professor": "Patricia Martinez"
         }
       ]
     },
@@ -126,7 +186,30 @@
               "startTime": "10:00",
               "endTime": "13:00"
             }
-          ]
+          ],
+          "professor": "Robert Wilson"
+        },
+        {
+          "class": "Lecture - Section B03",
+          "campus": "Trafalgar",
+          "room": "TRA-G408",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Tuesday",
+              "startTime": "09:00",
+              "endTime": "12:00"
+            },
+            {
+              "day": "Thursday",
+              "startTime": "09:00",
+              "endTime": "12:00"
+            }
+          ],
+          "professor": "Linda Clark"
         }
       ]
     },
@@ -140,8 +223,8 @@
       "sections": [
         {
           "class": "Lecture - Section C03",
-          "campus": "Hazel McCallion",
-          "room": "HMC-A210",
+          "campus": "Trafalgar",
+          "room": "TRA-B210",
           "termDates": {
             "startDate": "2025-01-06",
             "endDate": "2025-04-17"
@@ -157,7 +240,30 @@
               "startTime": "14:00",
               "endTime": "16:00"
             }
-          ]
+          ],
+          "professor": "James Anderson"
+        },
+        {
+          "class": "Lecture - Section C04",
+          "campus": "Trafalgar",
+          "room": "TRA-B211",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Monday",
+              "startTime": "13:00",
+              "endTime": "15:00"
+            },
+            {
+              "day": "Wednesday",
+              "startTime": "13:00",
+              "endTime": "15:00"
+            }
+          ],
+          "professor": "Barbara Harris"
         }
       ]
     }

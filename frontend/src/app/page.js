@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./css/home.module.css";
+import courses from "./data/courses.json";
 
 export default function Home() {
   return (
