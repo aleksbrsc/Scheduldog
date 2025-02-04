@@ -1,0 +1,165 @@
+{
+  "courses": [
+    {
+      "courseCode": "DBAS17370",
+      "courseTitle": "Database Implement & Mgmt",
+      "units": 3.00,
+      "gradingBasis": "Numeric Grades",
+      "academicProgram": "Hon Bach CompSci - Mobile Comp",
+      "requirementDesignation": "Professional Course - Professional Programs",
+      "sections": [
+        {
+          "class": "Lecture - Section P02",
+          "campus": "Trafalgar",
+          "room": "TRA-S424",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Monday",
+              "startTime": "15:00",
+              "endTime": "18:00"
+            }
+          ]
+        },
+        {
+          "class": "Lab - Section L01",
+          "campus": "Trafalgar",
+          "room": "TRA-G202",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Wednesday",
+              "startTime": "09:00",
+              "endTime": "11:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "courseCode": "SYST34104",
+      "courseTitle": "Software Engineering",
+      "units": 4.00,
+      "gradingBasis": "Numeric Grades",
+      "academicProgram": "Hon Bach CompSci - Mobile Comp",
+      "requirementDesignation": "Professional Course - Professional Programs",
+      "sections": [
+        {
+          "class": "Lecture - Section P01",
+          "campus": "Trafalgar",
+          "room": "TRA-E104",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Tuesday",
+              "startTime": "13:00",
+              "endTime": "16:00"
+            },
+            {
+              "day": "Thursday",
+              "startTime": "13:00",
+              "endTime": "16:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "courseCode": "INFO12345",
+      "courseTitle": "Information Technology Fundamentals",
+      "units": 3.00,
+      "gradingBasis": "Numeric Grades",
+      "academicProgram": "Computer Studies",
+      "requirementDesignation": "Core Course",
+      "sections": [
+        {
+          "class": "Lecture - Section A01",
+          "campus": "Davis",
+          "room": "DAV-B305",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Monday",
+              "startTime": "09:00",
+              "endTime": "12:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "courseCode": "PROG24678",
+      "courseTitle": "Programming in Java",
+      "units": 4.00,
+      "gradingBasis": "Numeric Grades",
+      "academicProgram": "Software Development",
+      "requirementDesignation": "Professional Course",
+      "sections": [
+        {
+          "class": "Lecture - Section B02",
+          "campus": "Trafalgar",
+          "room": "TRA-G407",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Wednesday",
+              "startTime": "14:00",
+              "endTime": "17:00"
+            },
+            {
+              "day": "Friday",
+              "startTime": "10:00",
+              "endTime": "13:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "courseCode": "TELE35791",
+      "courseTitle": "Telecommunications and Networking",
+      "units": 3.00,
+      "gradingBasis": "Numeric Grades",
+      "academicProgram": "Networking",
+      "requirementDesignation": "Professional Course",
+      "sections": [
+        {
+          "class": "Lecture - Section C03",
+          "campus": "Hazel McCallion",
+          "room": "HMC-A210",
+          "termDates": {
+            "startDate": "2025-01-06",
+            "endDate": "2025-04-17"
+          },
+          "schedule": [
+            {
+              "day": "Tuesday",
+              "startTime": "10:00",
+              "endTime": "12:00"
+            },
+            {
+              "day": "Thursday",
+              "startTime": "14:00",
+              "endTime": "16:00"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

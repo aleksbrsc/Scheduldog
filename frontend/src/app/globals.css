@@ -3,7 +3,11 @@
   src: url("assets/fonts/PublicSans_Variable.ttf") format("truetype");
 }
 
-/* TODO: add italic public sans here */
+@font-face {
+  font-family: "Public Sans";
+  src: url("assets/fonts/PublicSans-Italic.ttf") format("truetype");
+  font-style: italic;
+}
 
 html,
 body {
