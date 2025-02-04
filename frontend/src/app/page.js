@@ -8,6 +8,7 @@ export default function Home() {
       <section id={styles.hero_section}>
         <div id={styles.hero_container}>
           <h1>Scheduldog :0</h1>
+          <h2>Audrey here</h2>
         </div>
       </section>
     </main>
