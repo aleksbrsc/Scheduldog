@@ -9,7 +9,7 @@
       "requirementDesignation": "Professional Course - Professional Programs",
       "sections": [
         {
-          "class": "Lecture - Section P02",
+          "class": "Section P02",
           "campus": "Trafalgar",
           "room": "TRA-S424",
           "termDates": {
@@ -26,7 +26,7 @@
           "professor": "John Smith"
         },
         {
-          "class": "Lab - Section L01",
+          "class": "Section P01",
           "campus": "Trafalgar",
           "room": "TRA-G202",
           "termDates": {
@@ -43,7 +43,7 @@
           "professor": "Jane Doe"
         },
         {
-          "class": "Lecture - Section P03",
+          "class": "Section P03",
           "campus": "Trafalgar",
           "room": "TRA-S425",
           "termDates": {
@@ -70,7 +70,7 @@
       "requirementDesignation": "Professional Course - Professional Programs",
       "sections": [
         {
-          "class": "Lecture - Section P01",
+          "class": "Section P01",
           "campus": "Trafalgar",
           "room": "TRA-E104",
           "termDates": {
@@ -92,7 +92,7 @@
           "professor": "Michael Brown"
         },
         {
-          "class": "Lecture - Section P02",
+          "class": "Section P02",
           "campus": "Trafalgar",
           "room": "TRA-E105",
           "termDates": {
@@ -124,7 +124,7 @@
       "requirementDesignation": "Core Course",
       "sections": [
         {
-          "class": "Lecture - Section A01",
+          "class": "Section P01",
           "campus": "Trafalgar",
           "room": "TRA-B305",
           "termDates": {
@@ -141,7 +141,7 @@
           "professor": "William Lee"
         },
         {
-          "class": "Lecture - Section A02",
+          "class": "Section P02",
           "campus": "Trafalgar",
           "room": "TRA-B306",
           "termDates": {
@@ -168,7 +168,7 @@
       "requirementDesignation": "Professional Course",
       "sections": [
         {
-          "class": "Lecture - Section B02",
+          "class": "Section P02",
           "campus": "Trafalgar",
           "room": "TRA-G407",
           "termDates": {
@@ -190,7 +190,7 @@
           "professor": "Robert Wilson"
         },
         {
-          "class": "Lecture - Section B03",
+          "class": "Section P03",
           "campus": "Trafalgar",
           "room": "TRA-G408",
           "termDates": {
@@ -222,7 +222,7 @@
       "requirementDesignation": "Professional Course",
       "sections": [
         {
-          "class": "Lecture - Section C03",
+          "class": "Section P03",
           "campus": "Trafalgar",
           "room": "TRA-B210",
           "termDates": {
@@ -244,7 +244,7 @@
           "professor": "James Anderson"
         },
         {
-          "class": "Lecture - Section C04",
+          "class": "Section P04",
           "campus": "Trafalgar",
           "room": "TRA-B211",
           "termDates": {
