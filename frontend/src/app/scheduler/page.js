@@ -4,11 +4,18 @@ import { createSwapy } from "swapy";
 import styles from "../css/scheduler.module.css";
 
 export default function Scheduler({ course }) {
-  const [selected, setSelected] = useState(course.sections);
+  const [selected, setSelected] = useState(null);
   const [available, setAvailable] = useState(null);
+  const [randomColor, setRandomColor] = useState("");
 
   const containerRef = useRef(null);
   const swapyRef = useRef(null);
+
+  // Generate a random color
+  useEffect(() => {
+    const randomColor = `hsl(${Math.random() * 360}, 100%, 95%)`;
+    setRandomColor(randomColor);
+  }, []);
 
   // Update selected and available sections when course changes
   useEffect(() => {
@@ -24,7 +31,7 @@ export default function Scheduler({ course }) {
       swapyRef.current = createSwapy(containerRef.current);
 
       swapyRef.current.onSwap((event) => {
-        if (!event ||!event.source ||!event.target) {
+        if (!event || !event.source || !event.target) {
           return;
         }
         const { source, target } = event;
@@ -33,17 +40,17 @@ export default function Scheduler({ course }) {
         const targetId = target.getAttribute("data-swapy-item");
 
         if (
-          (sourceId === "selected" && targetId!== "selected") ||
-          (targetId === "selected" && sourceId!== "selected")
+          (sourceId === "selected" && targetId !== "selected") ||
+          (targetId === "selected" && sourceId !== "selected")
         ) {
-          const availableSectionId = sourceId === "selected"? targetId: sourceId;
+          const availableSectionId = sourceId === "selected" ? targetId : sourceId;
           const swappedSection = available.find(
             (sec) => sec.class === availableSectionId
           );
           if (swappedSection) {
             setAvailable((prev) =>
               prev.map((sec) =>
-                sec.class === swappedSection.class? selected: sec
+                sec.class === swappedSection.class ? selected : sec
               )
             );
             setSelected(swappedSection);
@@ -57,7 +64,7 @@ export default function Scheduler({ course }) {
     };
   }, [selected, available]);
 
-  if (!course ||!selected ||!available) {
+  if (!course || !selected || !available) {
     return <div className={styles.scheduler_skeleton}>Loading...</div>;
   }
 
@@ -67,8 +74,15 @@ export default function Scheduler({ course }) {
         {course.courseTitle} ({course.courseCode})
       </h2>
       <div ref={containerRef} className={styles.swapy_container}>
-        <div data-swapy-slot="selected" className={styles.slot}>
-          <div data-swapy-item="selected" className={styles.selected_item}>
+        <div
+          data-swapy-slot="selected"
+          className={styles.slot}
+        >
+          <div
+            data-swapy-item="selected"
+            className={styles.selected_item}
+            style={{ backgroundColor: randomColor }}
+          >
             <h3>Selected Section</h3>
             <div>{selected.class}</div>
             <div>
@@ -86,7 +100,11 @@ export default function Scheduler({ course }) {
             data-swapy-slot={sec.class}
             className={styles.slot}
           >
-            <div data-swapy-item={sec.class} className={styles.available_item}>
+            <div
+              data-swapy-item={sec.class}
+              className={styles.available_item}
+              style={{ backgroundColor: randomColor }}
+            >
               <h3>Available Section</h3>
               <div>{sec.class}</div>
               <div>

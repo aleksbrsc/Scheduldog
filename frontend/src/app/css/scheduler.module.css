@@ -19,6 +19,18 @@
     cursor: pointer;
 }
 
+.slot{
+    border-radius: 0.5rem!important;
+    margin: 1rem;
+    background: repeating-linear-gradient(
+        -45deg,
+        #ffffff,
+        #ffffff 10px,
+        #eaeaea 10px,
+        #eaeaea 20px
+    );
+}
+
 .selected_item {
     display: flex;
     justify-content: flex-start;
@@ -31,10 +43,11 @@
 
 .available_item {
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-flow: column nowrap;
     padding: 1rem;
     border: 2px dashed #7d7d7d;
     border-radius: 0.5rem!important;
+    opacity: .5;
 }
