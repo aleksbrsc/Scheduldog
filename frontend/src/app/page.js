@@ -1,16 +1,14 @@
-import Image from "next/image";
-import styles from "./css/home.module.css";
-import courses from "./data/courses.json";
+"use client";
+import coursesData from "./data/courses.json";
+import Scheduler from "./scheduler/page.js";
 
 export default function Home() {
   return (
-    <main>
-      <section id={styles.hero_section}>
-        <div id={styles.hero_container}>
-          <h1>Scheduldog :0</h1>
-          <h2>Audrey here</h2>
-        </div>
-      </section>
-    </main>
+    <div>
+      <h1>Course Scheduler</h1>
+      {coursesData.courses.map((course) => (
+        <Scheduler key={course.courseCode} course={course} />
+      ))}
+    </div>
   );
 }
