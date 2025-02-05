@@ -1,7 +1,11 @@
 "use client";
 import coursesData from "./data/courses.json";
-import Scheduler from "./scheduler/page.js";
 import styles from "./css/home.module.css";
+import dynamic from 'next/dynamic';
+
+const Scheduler = dynamic(() => import('./scheduler/page.js'), {
+  ssr: false // Disable SSR for Scheduler
+});
 
 export default function Home() {
   return (

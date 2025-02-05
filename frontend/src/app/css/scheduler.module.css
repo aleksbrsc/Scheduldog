@@ -1,6 +1,6 @@
 .course_scheduler {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     width: 15rem;
     height: 100%;
     box-sizing: border-box;
@@ -21,8 +21,8 @@
 
 .selected_item {
     display: flex;
-    justify-content: start;
-    align-items: start;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-flow: column nowrap;
     padding: 1rem;
     border: 1px solid #000;
