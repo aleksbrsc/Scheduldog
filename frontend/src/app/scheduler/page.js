@@ -54,7 +54,7 @@ export default function Scheduler({ course }) {
   }, [selected, available]);
 
   return (
-    <div className={styles.course_scheduler}>
+    <section className={styles.course_scheduler}>
       <h2>
         {course.courseTitle} ({course.courseCode})
       </h2>
@@ -62,7 +62,7 @@ export default function Scheduler({ course }) {
       <div ref={containerRef} className={styles.swapy_container}>
         {/* Selected Section Slot */}
         <div data-swapy-slot="selected" className={styles.slot}>
-          <div data-swapy-item="selected" className={styles.selectedItem}>
+          <div data-swapy-item="selected" className={styles.selected_item}>
             <h3>Selected Section</h3>
             <div>{selected.class}</div>
             <div>
@@ -81,7 +81,7 @@ export default function Scheduler({ course }) {
             data-swapy-slot={sec.class}
             className={styles.slot}
           >
-            <div data-swapy-item={sec.class} className={styles.availableItem}>
+            <div data-swapy-item={sec.class} className={styles.available_item}>
               <h3>Available Section</h3>
               <div>{sec.class}</div>
               <div>
@@ -94,6 +94,6 @@ export default function Scheduler({ course }) {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }
