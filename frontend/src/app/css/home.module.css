@@ -21,13 +21,124 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 4.5rem);
 }
 
 #hero_container {
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: end;
     width: 100%;
     height: 100%;
+    padding-inline: var(--inline_padding);
+}
+
+#hero_container h1 {
+    margin: 0;
+    width: 47.5rem;
+    color: var(--dark);
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 115;
+    line-height: 4.375rem;
+    margin-bottom: 7.5rem;
+    z-index: 1;
+}
+
+#hero_container h1 span {
+    font-weight: 184;
+}
+
+#dachshund {
+    position: absolute;
+    width: 44.375rem;
+    height: 51.625rem;
+    flex-shrink: 0;
+}
+
+/* || DEMO CONTAINER */
+#demo_container {
+    position: absolute;
+    top: var(--inline_padding);
+    right: var(--inline_padding);
+    display: flex;
+    align-items: end;
+    flex-flow: column nowrap;
+    height: 100%;
+}
+
+
+#demo_container h2 {
+    margin-top: .5rem;
+    color: var(--dark);
+    text-align: right;
+    font-size: 2rem;
+    font-weight: 115;
+}
+
+#demo_container p {
+    color: var(--dark_50);
+    text-align: right;
+    font-size: 1.25rem;
+    font-weight: 115;
+}
+
+#demo_snippet {
+    position: relative;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+#demo_snippet:hover {
+    transform: scale(1.025) rotate(-1deg);
+}
+
+#demo_snippet:hover #demo_arrow {
+    transform: scale(1.1) rotate(-3deg);
+}
+
+#demo_snippet #demo_image {
+    width: 34.7rem;
+    height: 21.6875rem;
+    flex-shrink: 0;
+    aspect-ratio: 555.20/347.00;
+}
+
+#demo_snippet #demo_arrow {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    transition: transform 0.2s;
+}
+
+@media (max-width: 1057px) {
+    #dachshund {
+        width: 37.5rem;
+        height: 43.625rem;
+    }
+
+    #hero_container h1 {
+        width: 35rem;
+        font-size: 3rem;
+        line-height: 4rem;
+        margin-bottom: 6.5rem;
+    }
+
+    #demo_snippet #demo_image {
+        width: 17.6875rem;
+        height: unset;
+    }
+
+    #demo_snippet #demo_arrow {
+        width: 2.5rem;
+        bottom: -1.25rem;
+        right: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #dachshund {
+        width: 30rem;
+        height: 34.75rem;
+    }
 }
