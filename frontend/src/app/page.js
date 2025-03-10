@@ -5,10 +5,6 @@ import dachs from './assets/images/home/dachs.png';
 import schedule_demo from './assets/images/home/schedule_demo.png';
 import angled_arrow from './assets/icons/angled_arrow.svg';
 
-// const Scheduler = dynamic(() => import('./scheduler/page.js'), {
-//   ssr: false // Disable SSR for Scheduler
-// });
-
 export default function Home() {
   return (
     <section id={styles.hero_section}>
@@ -25,12 +21,5 @@ export default function Home() {
         </div>
       </div>
     </section>
-    // <section id={styles.hero_section}>
-    //   <div id={styles.hero_container}>
-    //     {coursesData.courses.map((course) => (
-    //       <Scheduler key={course.courseCode} course={course} />
-    //     ))}
-    //   </div>
-    // </section>
   );
 }

@@ -49,10 +49,10 @@ function Navbar() {
           </li>
           <div id={styles.auth_buttons}>
             <div id={styles.signup} className={`${styles.list_item}`}>
-              <Link href="/signUp" onClick={() => clickHandler()}>Sign up</Link>
+              <Link href="/schedules" onClick={() => clickHandler()}>Sign up</Link>
             </div>
             <div id={styles.login} className={`${styles.list_item}`}>
-              <Link href="/login" onClick={() => clickHandler()}>Login</Link>
+              <Link href="/schedules" onClick={() => clickHandler()}>Login</Link>
             </div>
           </div>
         </ul>
