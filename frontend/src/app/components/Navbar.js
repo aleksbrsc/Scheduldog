@@ -7,7 +7,7 @@ import Link from 'next/link';
 import logo from '../assets/logos/logo.svg';
 import Image from 'next/image';
 
-//auth0 -- working on it
+//auth0
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 
@@ -18,7 +18,7 @@ function Navbar() {
   const [toggled, setToggled] = useState(false);
 
   //auth0
-  //var { user, isLoading } = useUser();
+  var { user, isLoading } = useUser();
 
   function getActive(path) {
     if (pathname === path) {
@@ -55,32 +55,34 @@ function Navbar() {
             <a onClick={() => toast.warning(toastMessage)}>FAQ</a>
           </li>
 
-        {/* auth0; working on it*/}
-<div id={styles.auth_buttons}>
-  {useUser.user ? (
-    <>
-      <div id={styles.signup} className={`${styles.list_item}`}>
-        <Link href="/schedules" onClick={() => clickHandler()}>Sign up</Link>
-      </div>
+        {/* auth0*/}
+        <div id={styles.auth_buttons}>
+          {/* user is not logged in */}
+            {!user && (
+              <>
+                <div id={styles.signup} className={`${styles.list_item}`}>
+                  <Link href="/api/auth/login" onClick={() => clickHandler()}> Sign in </Link>
+                </div>
 
-      <div id={styles.login} className={`${styles.list_item}`}>
-        <Link href="/api/auth/login" onClick={() => clickHandler()}>Login</Link>
-      </div>
-    </>
-  ) : (
-    <>
-    <div id={styles.schedules} className={`${styles.list_item}`}>
-        <Link href="/schedules" onClick={() => clickHandler()}>Schedules</Link>
-      </div>
+                <div id={styles.login} className={`${styles.list_item}`}>
+                  <Link href="/api/auth/login" onClick={() => clickHandler()}>Login</Link>
+                </div>
+              </>
+            )}
 
-    // If the user is authenticated, show Logout
-    <div id={styles.logout} className={`${styles.list_item}`}>
-      <Link href="/api/auth/logout" onClick={() => clickHandler()}>Logout</Link>
-    </div>
-    </>
-  )}
+          {/* user is logged in */}
+            {user && (
+            <>
+              <div id={styles.schedules} className={`${styles.list_item}`}>
+                  <Link href="/schedules" onClick={() => clickHandler()}>Schedules</Link>
+              </div>
 
-</div>
+              <div id={styles.logout} className={`${styles.list_item}`}>
+                <Link href="/api/auth/logout" onClick={() => clickHandler()}>Logout</Link>
+              </div>
+            </>
+            )}
+        </div>
 
 
         </ul>
