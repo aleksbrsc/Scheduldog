@@ -7,11 +7,18 @@ import Link from 'next/link';
 import logo from '../assets/logos/logo.svg';
 import Image from 'next/image';
 
+//auth0 -- working on it
+import { useUser } from '@auth0/nextjs-auth0/client';
+
+
 const toastMessage = 'Sorry! A few parts of this web app are currently under development.';
 
 function Navbar() {
   const pathname = usePathname();
   const [toggled, setToggled] = useState(false);
+
+  //auth0
+  //var { user, isLoading } = useUser();
 
   function getActive(path) {
     if (pathname === path) {
@@ -47,14 +54,35 @@ function Navbar() {
           <li className={`${styles.list_item} ${getActive('/faq')}`}>
             <a onClick={() => toast.warning(toastMessage)}>FAQ</a>
           </li>
-          <div id={styles.auth_buttons}>
-            <div id={styles.signup} className={`${styles.list_item}`}>
-              <Link href="/schedules" onClick={() => clickHandler()}>Sign up</Link>
-            </div>
-            <div id={styles.login} className={`${styles.list_item}`}>
-              <Link href="/schedules" onClick={() => clickHandler()}>Login</Link>
-            </div>
-          </div>
+
+        {/* auth0; working on it*/}
+<div id={styles.auth_buttons}>
+  {useUser.user ? (
+    <>
+      <div id={styles.signup} className={`${styles.list_item}`}>
+        <Link href="/schedules" onClick={() => clickHandler()}>Sign up</Link>
+      </div>
+
+      <div id={styles.login} className={`${styles.list_item}`}>
+        <Link href="/api/auth/login" onClick={() => clickHandler()}>Login</Link>
+      </div>
+    </>
+  ) : (
+    <>
+    <div id={styles.schedules} className={`${styles.list_item}`}>
+        <Link href="/schedules" onClick={() => clickHandler()}>Schedules</Link>
+      </div>
+
+    // If the user is authenticated, show Logout
+    <div id={styles.logout} className={`${styles.list_item}`}>
+      <Link href="/api/auth/logout" onClick={() => clickHandler()}>Logout</Link>
+    </div>
+    </>
+  )}
+
+</div>
+
+
         </ul>
         {/* <div className={`${styles.list_item} ${styles.contact_button} ${getActive('/contact')}`}>
           <Link href="/contact" onClick={() => clickHandler()}>Contact us</Link>
