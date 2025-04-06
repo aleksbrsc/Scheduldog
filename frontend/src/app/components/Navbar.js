@@ -60,26 +60,26 @@ function Navbar() {
           {/* user is not logged in */}
             {!user && (
               <>
-                <div id={styles.signup} className={`${styles.list_item}`}>
+                <li id={styles.signup} className={`${styles.list_item}`}>
                   <Link href="/api/auth/login" onClick={() => clickHandler()}> Sign in </Link>
-                </div>
+                </li>
 
-                <div id={styles.login} className={`${styles.list_item}`}>
+                <li id={styles.login} className={`${styles.list_item}`}>
                   <Link href="/api/auth/login" onClick={() => clickHandler()}>Login</Link>
-                </div>
+                </li>
               </>
             )}
 
           {/* user is logged in */}
             {user && (
             <>
-              <div id={styles.schedules} className={`${styles.list_item}`}>
+              <li id={styles.schedules} className={`${styles.list_item}`}>
                   <Link href="/schedules" onClick={() => clickHandler()}>Schedules</Link>
-              </div>
+              </li>
 
-              <div id={styles.logout} className={`${styles.list_item}`}>
+              <li id={styles.logout} className={`${styles.list_item}`}>
                 <Link href="/api/auth/logout" onClick={() => clickHandler()}>Logout</Link>
-              </div>
+              </li>
             </>
             )}
         </div>

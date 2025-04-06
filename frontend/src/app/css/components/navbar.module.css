@@ -36,7 +36,6 @@
 }
 
 
-
 #logo_container h1 {
     font-size: 1.625rem;
     font-weight: 115;
@@ -80,7 +79,7 @@
     color: var(--secondary)
 }
 
-#signup a, #login a {
+#signup a, #login a, #logout a {
     list-style: none;
     letter-spacing: -0.0225rem;
     display: flex;
@@ -101,7 +100,7 @@
     align-items: center;
 }
 
-#login a {
+#login a, #logout a {
     background: unset;
     border: 1px solid var(--gray);
     color: var(--light);
@@ -110,6 +109,10 @@
 #signup a:hover, #login a:hover {
     color: var(--dark);
     background-color: var(--secondary);
+}
+
+#schedules a {
+    font-weight: 500;
 }
 
 .burger {
