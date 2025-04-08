@@ -33,21 +33,25 @@
 
 #schedule_cards {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     gap: .5rem;
 }
 
 .schedule_card {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
+    width: 2.25rem;
+    height: 2.25rem;
     border: 1px solid var(--gray_border);
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
 }
+
+.schedule_card:nth-child(even) { background-color: #F5F5F5; } /* Light White */
+.schedule_card:nth-child(odd) { background-color: #E0E0E0; } /* Light Grey */
 
 .schedule_card:hover {
     background-color: var(--dark);
@@ -81,8 +85,24 @@
     border-radius: 5px;
     background-color: var(--light);
     color: var(--dark);
+
+}
+
+#calendar_controls_bottom {
+    display: flex;
+    justify-content: start;
+    margin-top: 1rem;
+    gap: 1rem;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
+}
+  
+#calendar_controls_bottom button {
+padding: 0.5rem 1rem;
+border-radius: 5px;
+border: 1px solid var(--gray_border);
+background-color: var(--light);
+cursor: pointer;
 }
 
 @media (max-width: 768px) {

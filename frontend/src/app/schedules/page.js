@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import coursesData from '../data/courses.json';
-import styles from '../css/editing.module.css';
+import styles from '../css/schedules.module.css';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -43,9 +43,30 @@ export default function EditingPage() {
   const generateValidSchedules = () => {
     const allPossibleSchedules = generateAllScheduleCombinations(courses);
     const validSchedules = allPossibleSchedules.filter(schedule => !hasTimeConflict(schedule));
-
+  
+    const generateScheduleIds = (numSchedules) => {
+      const ids = [];
+      const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      for (let i = 0; i < numSchedules; i++) {
+        if (i < 26) {
+          ids.push(alphabet[i]);
+        } else {
+          const prefix = Math.floor(i / 26);
+          const suffix = alphabet[i % 26];
+          ids.push(`${prefix}${suffix}`);
+        }
+      }
+      return ids;
+    };
+  
+    const scheduleIds = generateScheduleIds(validSchedules.length);
+  
+    validSchedules.forEach((schedule, index) => {
+      schedule.scheduleId = scheduleIds[index];
+    });
+  
     setValidSchedules(validSchedules);
-
+  
     if (validSchedules.length > 0) {
       setCurrentSchedule(validSchedules[0]);
     }
@@ -70,6 +91,7 @@ export default function EditingPage() {
     };
 
     buildSchedules(0, []);
+    console.log(schedules);
     return schedules;
   };
 
@@ -195,7 +217,7 @@ export default function EditingPage() {
       <div id={styles.edit_container}>
         <div id={styles.data}>
           <div id={styles.schedule_grid}>
-            <h2>All Possible Schedules ({validSchedules.length})</h2>
+            <h2>Schedule Options ({validSchedules.length})</h2>
             <div id={styles.schedule_cards}>
               {validSchedules.map((schedule) => (
                 <div
@@ -203,7 +225,7 @@ export default function EditingPage() {
                   className={`${styles.schedule_card} ${currentSchedule?.scheduleId === schedule.scheduleId ? styles.selectedSchedule : ''}`}
                   onClick={() => handleScheduleClick(schedule)}
                 >
-                  <h3>Schedule #{schedule.scheduleId}</h3>
+                  <h3>{schedule.scheduleId}</h3>
                 </div>
               ))}
             </div>
@@ -248,18 +270,12 @@ export default function EditingPage() {
           )}
         </div>
         <div id={styles.calendar}>
-          <div id={styles.calendar_controls}>
-            <button onClick={() => handleViewChange('timeGridDay')}>Day</button>
-            <button onClick={() => handleViewChange('timeGridWeek')}>Week</button>
-            <button onClick={() => handleViewChange('dayGridMonth')}>Month</button>
-          </div>
-
           <FullCalendar
             ref={calendarRef}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView={view}
             headerToolbar={{
-              left: 'prev,next',
+              left: '',
               center: 'title',
               right: ''
             }}
@@ -270,6 +286,17 @@ export default function EditingPage() {
             slotMaxTime="22:00:00"
             initialDate="2025-03-09"
           />
+          <div id={styles.calendar_controls_bottom}>
+            <div>
+              <button onClick={() => calendarRef.current?.getApi().prev()}>←</button>
+              <button onClick={() => calendarRef.current?.getApi().next()}>→</button>
+            </div>
+          <div id={styles.calendar_controls}>
+            <button onClick={() => handleViewChange('timeGridDay')}>Day</button>
+            <button onClick={() => handleViewChange('timeGridWeek')}>Week</button>
+            <button onClick={() => handleViewChange('dayGridMonth')}>Month</button>
+          </div>
+          </div>
         </div>
       </div>
     </section>

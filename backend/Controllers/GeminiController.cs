@@ -21,13 +21,36 @@ namespace backend.Controllers
         {
             try
             {
-                var jsonPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "courses.json");
+                var jsonPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "schedules.json");
                 var jsonData = await System.IO.File.ReadAllTextAsync(jsonPath);
 
-                var fullPrompt = $"{request.Prompt}\n\n```json\n{jsonData}\n```";
+
+                var fullPrompt = @$"
+You are an assistant that helps optimize student course schedules.
+
+A user will provide a list of schedules and a set of preferences (e.g., 'I want early classes', 'minimize commuting', 'prefer classes on Tues/Thurs only').
+
+Your task is to:
+- Analyze the provided schedule data.
+- Determine the optimal order based on the user's preferences.
+- Return your response **strictly in this JSON format**:
+
+{{
+  ""answer"": ""<your short explanation for the user>"",
+  ""order"": [<ordered list of schedule identifiers or course codes>]
+}}
+
+Here is the user’s request:
+{request.Prompt}
+
+Here is the list of course schedules (in JSON):
+```json
+{jsonData}
+```";
+
                 var result = await _geminiService.GenerateTextAsync(fullPrompt);
 
-                var match = Regex.Match(result, @"```json\s*(.*?)\s*```", RegexOptions.Singleline);
+                var match = Regex.Match(result, @"```json\s * (.*?)\s *```", RegexOptions.Singleline);
                 if (match.Success)
                 {
                     var extractedJson = match.Groups[1].Value;

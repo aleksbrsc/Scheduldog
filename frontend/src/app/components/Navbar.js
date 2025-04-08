@@ -6,8 +6,6 @@ import { toast } from 'sonner';
 import Link from 'next/link';
 import logo from '../assets/logos/logo.svg';
 import Image from 'next/image';
-
-//auth0
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 
@@ -16,9 +14,7 @@ const toastMessage = 'Sorry! A few parts of this web app are currently under dev
 function Navbar() {
   const pathname = usePathname();
   const [toggled, setToggled] = useState(false);
-
-  //auth0
-  var { user, isLoading } = useUser();
+  const { user, isLoading } = useUser();
 
   function getActive(path) {
     if (pathname === path) {
@@ -54,10 +50,7 @@ function Navbar() {
           <li className={`${styles.list_item} ${getActive('/faq')}`}>
             <a onClick={() => toast.warning(toastMessage)}>FAQ</a>
           </li>
-
-        {/* auth0*/}
-        <div id={styles.auth_buttons}>
-          {/* user is not logged in */}
+          <div id={styles.auth_buttons}>
             {!user && (
               <>
                 <li id={styles.signup} className={`${styles.list_item}`}>
@@ -70,26 +63,25 @@ function Navbar() {
               </>
             )}
 
-          {/* user is logged in */}
             {user && (
-            <>
-              <li id={styles.schedules} className={`${styles.list_item}`}>
-                  <Link href="/schedules" onClick={() => clickHandler()}>Schedules</Link>
-              </li>
+              <>
+                <li id={styles.signup} className={`${styles.list_item}`}>
+                  <Link href="/schedules" onClick={() => clickHandler()}>My Schedules</Link>
+                </li>
 
-              <li id={styles.logout} className={`${styles.list_item}`}>
-                <Link href="/api/auth/logout" onClick={() => clickHandler()}>Logout</Link>
-              </li>
-            </>
+                <li id={styles.logout} className={`${styles.list_item}`}>
+                  <Link href="/api/auth/logout" onClick={() => clickHandler()}>Logout</Link>
+                </li>
+              </>
             )}
-        </div>
+          </div>
 
 
         </ul>
         {/* <div className={`${styles.list_item} ${styles.contact_button} ${getActive('/contact')}`}>
           <Link href="/contact" onClick={() => clickHandler()}>Contact us</Link>
         </div> */}
-        <div className={styles.burger} onClick={() => setToggled(!toggled)}> 
+        <div className={styles.burger} onClick={() => setToggled(!toggled)}>
           <div />
           <div />
           <div />
