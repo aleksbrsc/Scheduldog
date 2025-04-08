@@ -11,6 +11,8 @@ import { Modal, Input, Tabs } from 'antd';
 import Image from 'next/image';
 import FlipMove from 'react-flip-move';
 import gemini_icon from '.././assets/icons/gemini.png';
+import { toast } from 'sonner';
+
 const { TabPane } = Tabs;
 
 export default function EditingPage() {
@@ -233,17 +235,34 @@ export default function EditingPage() {
 
   const handleAiOptimize = async (prompt) => {
     try {
-      const newOrder = ["C", "A", "D", "B", "E"];
+      const response = await fetch('http://localhost:5139/api/Gemini/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+      });
 
-      const reordered = newOrder
-        .map(id => validSchedules.find(s => s.scheduleId === id))
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+
+      const newOrder = data.order;
+      const reorderedSchedules = newOrder
+        .map(id => validSchedules.find(schedule => schedule.scheduleId === id))
         .filter(Boolean);
 
-      setValidSchedules(reordered);
-      if (reordered.length > 0) setCurrentSchedule(reordered[0]);
-      setIsModalOpen(false);
-    } catch (err) {
-      console.error('AI optimization failed', err);
+      setValidSchedules(reorderedSchedules);
+      if (reorderedSchedules.length > 0) {
+        setCurrentSchedule(reorderedSchedules[0]);
+      }
+
+      toast.success(data.answer);
+    } catch (error) {
+      console.error('AI optimization failed', error);
+      toast.error('Failed to optimize schedule');
     }
   };
 
