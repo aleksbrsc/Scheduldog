@@ -66,7 +66,7 @@ function Navbar() {
             {user && (
               <>
                 <li id={styles.signup} className={`${styles.list_item}`}>
-                  <Link href="/schedules" onClick={() => clickHandler()}>My Schedules</Link>
+                  <Link href="/schedules" onClick={() => clickHandler()}>Schedules</Link>
                 </li>
 
                 <li id={styles.logout} className={`${styles.list_item}`}>
