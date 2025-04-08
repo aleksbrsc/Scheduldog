@@ -351,7 +351,7 @@ export default function EditingPage() {
             height="auto"
             allDaySlot={false}
             slotMinTime="08:00:00"
-            slotMaxTime="22:00:00"
+            slotMaxTime="19:00:00"
             initialDate="2025-03-09"
           />
 
