@@ -149,65 +149,75 @@ export default function EditingPage() {
   const generateCalendarEvents = () => {
     if (!currentSchedule) return;
     const events = [];
-
-    currentSchedule.sections.forEach(section => {
+  
+    currentSchedule.sections.forEach((section) => {
       if (!section.schedule) return;
-
-      const course = courses.find(c =>
-        c.sections.some(s =>
-          s.class === section.class &&
-          s.professor === section.professor
+  
+      const course = courses.find((c) =>
+        c.sections.some(
+          (s) => s.class === section.class && s.professor === section.professor
         )
       );
-
+  
       if (!course) return;
-
+  
       const termStart = new Date(section.termDates.startDate);
       const termEnd = new Date(section.termDates.endDate);
-
-      section.schedule.forEach(time => {
+  
+      section.schedule.forEach((time) => {
         const dayNum = getDayNumber(time.day);
         let currentDate = new Date(termStart);
-
+  
         while (currentDate.getDay() !== dayNum) {
           currentDate.setDate(currentDate.getDate() + 1);
         }
-
+  
         while (currentDate <= termEnd) {
           const startDate = new Date(currentDate);
           const endDate = new Date(currentDate);
-
+  
           const startHour = parseInt(time.startTime.split(':')[0]);
           const startMin = parseInt(time.startTime.split(':')[1]);
           const endHour = parseInt(time.endTime.split(':')[0]);
           const endMin = parseInt(time.endTime.split(':')[1]);
           const colors = courseColors[course.courseCode] || { bg: '#4CAF50', border: '#2E7D32' };
-
+  
           startDate.setHours(startHour, startMin);
           endDate.setHours(endHour, endMin);
+  
+            const formatTime = (timeStr) => {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            const period = hours >= 12 ? ' PM' : ' AM';
+            const formattedHours = hours % 12 || 12;
+            return `${formattedHours}:${minutes.toString().padStart(2, '0')}${period}`;
+            };
 
-          events.push({
-            title: `${course.courseCode} - ${section.class}`,
+            events.push({
+            id: `${course.courseCode}-${section.class}-${startDate.toISOString()}`,
+            title: `${course.courseCode}`,
             start: startDate,
             end: endDate,
             extendedProps: {
               courseCode: course.courseCode,
               section: section.class,
               professor: section.professor,
-              room: section.room
+              time: `${formatTime(time.startTime)}-${formatTime(time.endTime)}`,
+              room: section.room,
             },
             backgroundColor: colors.bg,
             borderColor: colors.border,
-            textColor: 'black'
-          });
-
+            textColor: 'black',
+            });
+  
           currentDate.setDate(currentDate.getDate() + 7);
         }
       });
     });
-
+  
     setCalendarEvents(events);
   };
+  
+  
 
   const handleScheduleClick = (schedule) => {
     setCurrentSchedule(schedule);
@@ -324,15 +334,27 @@ export default function EditingPage() {
             headerToolbar={{
               left: '',
               center: 'title',
-              right: ''
+              right: '',
             }}
             events={calendarEvents}
+            eventContent={(arg) => {
+              const { event } = arg;
+              const { professor, time, room } = event.extendedProps;
+              return (
+                <div>
+                  <div><strong>{event.title}</strong> {professor}</div>
+                  <div style={{ marginTop: '5px' }}>{time}</div>
+                  <div><em>{room}</em></div>
+                </div>
+              );
+            }}
             height="auto"
             allDaySlot={false}
             slotMinTime="08:00:00"
             slotMaxTime="22:00:00"
             initialDate="2025-03-09"
           />
+
           <div id={styles.calendar_controls_bottom}>
             <div>
               <button onClick={() => calendarRef.current?.getApi().prev()}>←</button>

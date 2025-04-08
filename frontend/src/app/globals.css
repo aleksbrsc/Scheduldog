@@ -121,3 +121,7 @@ a {
   font-family: "Aeonik", sans-serif !important;
   font-weight: 87 !important;
 }
+
+strong {
+  font-weight: 126 !important;
+}
