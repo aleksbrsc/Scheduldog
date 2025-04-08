@@ -7,7 +7,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { Modal, Input, Tabs } from 'antd';
+import { Modal, Input, Tabs, Spin } from 'antd';
 import Image from 'next/image';
 import FlipMove from 'react-flip-move';
 import gemini_icon from '.././assets/icons/gemini.png';
@@ -23,6 +23,7 @@ export default function EditingPage() {
   const [currentSchedule, setCurrentSchedule] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [aiPrompt, setAiPrompt] = useState('');
+  const [aiLoading, setAiLoading] = useState(false);
   const calendarRef = useRef(null);
 
   const courseColors = {
@@ -234,6 +235,7 @@ export default function EditingPage() {
   };
 
   const handleAiOptimize = async (prompt) => {
+    setAiLoading(true);
     try {
       const response = await fetch('http://localhost:5139/api/Gemini/generate', {
         method: 'POST',
@@ -263,6 +265,8 @@ export default function EditingPage() {
     } catch (error) {
       console.error('AI optimization failed', error);
       toast.error('Failed to optimize schedule');
+    } finally {
+      setAiLoading(false);
     }
   };
 
@@ -271,7 +275,7 @@ export default function EditingPage() {
       <div id={styles.edit_container}>
         <div id={styles.data}>
           <div id={styles.schedule_grid}>
-            <h2>Schedule Options ({validSchedules.length})</h2>
+            <h2>Schedule Options ({validSchedules.length})<Spin style={{marginLeft: '.75rem'}} spinning={aiLoading} tip="Optimizing schedule..." /></h2>
             <FlipMove id={styles.schedule_cards}>
               {validSchedules.map((schedule) => (
                 <div
