@@ -77,6 +77,27 @@
     opacity: .7;
 }
 
+@keyframes shake {
+    0%, 100% {
+        transform: rotate(0) scale(1);
+    }
+    25% {
+        transform: rotate(-5deg) scale(1.5);
+        padding-left: .375rem;
+    }
+    50% {
+        transform: rotate(5deg) scale(1.5);
+        padding-left: .375rem;
+    }
+    75% {
+        transform: rotate(-5deg) scale(1.5);
+        padding-left: .375rem;
+    }
+}
+
+.star_button {
+    animation: shake 2s ease-in-out 1s;
+}
 
 .schedule_card:hover {
     background-color: var(--dark);
@@ -100,34 +121,51 @@
 
 #calendar_controls {
     display: flex;
-    gap: .5rem;
+    gap: 1rem;
     width: fit-content;
+    justify-content: center;
+    align-items: center;
 }
 
 #calendar_controls button {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1.2rem;
     border: 1px solid var(--gray_border);
     border-radius: 5px;
     background-color: var(--light);
     color: var(--dark);
+    font-size: 0.9rem;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
 
+#calendar_controls button:hover {
+    background-color: var(--dark);
+    color: var(--light);
+    transform: scale(1.05)
 }
 
 #calendar_controls_bottom {
     display: flex;
-    justify-content: start;
-    margin-top: 1rem;
+    justify-content: center;
     gap: 1rem;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
+    margin-top: 1rem;
 }
 
 #calendar_controls_bottom button {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 5px;
     border: 1px solid var(--gray_border);
     background-color: var(--light);
     cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+#calendar_controls_bottom button:hover {
+    background-color: var(--dark);
+    color: var(--light);
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

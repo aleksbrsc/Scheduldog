@@ -9,7 +9,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Modal, Input, Button } from 'antd';
 import { StarFilled } from '@ant-design/icons';
-import Image from 'next/image'; 
+import Image from 'next/image';
 import FlipMove from 'react-flip-move';
 import gemini_icon from '.././assets/icons/gemini.png';
 
@@ -50,7 +50,7 @@ export default function EditingPage() {
   const generateValidSchedules = () => {
     const allPossibleSchedules = generateAllScheduleCombinations(courses);
     const validSchedules = allPossibleSchedules.filter(schedule => !hasTimeConflict(schedule));
-  
+
     const generateScheduleIds = (numSchedules) => {
       const ids = [];
       const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -65,20 +65,20 @@ export default function EditingPage() {
       }
       return ids;
     };
-  
+
     const scheduleIds = generateScheduleIds(validSchedules.length);
-  
+
     validSchedules.forEach((schedule, index) => {
       schedule.scheduleId = scheduleIds[index];
     });
-  
+
     setValidSchedules(validSchedules);
-  
+
     if (validSchedules.length > 0) {
       setCurrentSchedule(validSchedules[0]);
     }
 
-    
+
     console.log(validSchedules);
   };
 
@@ -149,50 +149,50 @@ export default function EditingPage() {
   const generateCalendarEvents = () => {
     if (!currentSchedule) return;
     const events = [];
-  
+
     currentSchedule.sections.forEach((section) => {
       if (!section.schedule) return;
-  
+
       const course = courses.find((c) =>
         c.sections.some(
           (s) => s.class === section.class && s.professor === section.professor
         )
       );
-  
+
       if (!course) return;
-  
+
       const termStart = new Date(section.termDates.startDate);
       const termEnd = new Date(section.termDates.endDate);
-  
+
       section.schedule.forEach((time) => {
         const dayNum = getDayNumber(time.day);
         let currentDate = new Date(termStart);
-  
+
         while (currentDate.getDay() !== dayNum) {
           currentDate.setDate(currentDate.getDate() + 1);
         }
-  
+
         while (currentDate <= termEnd) {
           const startDate = new Date(currentDate);
           const endDate = new Date(currentDate);
-  
+
           const startHour = parseInt(time.startTime.split(':')[0]);
           const startMin = parseInt(time.startTime.split(':')[1]);
           const endHour = parseInt(time.endTime.split(':')[0]);
           const endMin = parseInt(time.endTime.split(':')[1]);
           const colors = courseColors[course.courseCode] || { bg: '#4CAF50', border: '#2E7D32' };
-  
+
           startDate.setHours(startHour, startMin);
           endDate.setHours(endHour, endMin);
-  
-            const formatTime = (timeStr) => {
+
+          const formatTime = (timeStr) => {
             const [hours, minutes] = timeStr.split(':').map(Number);
             const period = hours >= 12 ? ' PM' : ' AM';
             const formattedHours = hours % 12 || 12;
             return `${formattedHours}:${minutes.toString().padStart(2, '0')}${period}`;
-            };
+          };
 
-            events.push({
+          events.push({
             id: `${course.courseCode}-${section.class}-${startDate.toISOString()}`,
             title: `${course.courseCode}`,
             start: startDate,
@@ -207,17 +207,17 @@ export default function EditingPage() {
             backgroundColor: colors.bg,
             borderColor: colors.border,
             textColor: 'black',
-            });
-  
+          });
+
           currentDate.setDate(currentDate.getDate() + 7);
         }
       });
     });
-  
+
     setCalendarEvents(events);
   };
-  
-  
+
+
 
   const handleScheduleClick = (schedule) => {
     setCurrentSchedule(schedule);
@@ -234,11 +234,11 @@ export default function EditingPage() {
   const handleAiOptimize = async (prompt) => {
     try {
       const newOrder = ["C", "A", "D", "B", "E"];
-  
+
       const reordered = newOrder
         .map(id => validSchedules.find(s => s.scheduleId === id))
         .filter(Boolean);
-  
+
       setValidSchedules(reordered);
       if (reordered.length > 0) setCurrentSchedule(reordered[0]);
       setIsModalOpen(false);
@@ -246,7 +246,7 @@ export default function EditingPage() {
       console.error('AI optimization failed', err);
     }
   };
-  
+
   return (
     <section id={styles.edit_section}>
       <div id={styles.edit_container}>
@@ -270,7 +270,7 @@ export default function EditingPage() {
                   setIsModalOpen(true);
                 }}
               >
-                <Image src={gemini_icon} alt="AI optimize"/>
+                <Image src={gemini_icon} alt="AI optimize" />
               </button>
             </FlipMove>
             <Modal
@@ -360,11 +360,11 @@ export default function EditingPage() {
               <button onClick={() => calendarRef.current?.getApi().prev()}>←</button>
               <button onClick={() => calendarRef.current?.getApi().next()}>→</button>
             </div>
-          <div id={styles.calendar_controls}>
-            <button onClick={() => handleViewChange('timeGridDay')}>Day</button>
-            <button onClick={() => handleViewChange('timeGridWeek')}>Week</button>
-            <button onClick={() => handleViewChange('dayGridMonth')}>Month</button>
-          </div>
+            <div id={styles.calendar_controls}>
+              <button onClick={() => handleViewChange('timeGridDay')}>Day</button>
+              <button onClick={() => handleViewChange('timeGridWeek')}>Week</button>
+              <button onClick={() => handleViewChange('dayGridMonth')}>Month</button>
+            </div>
           </div>
         </div>
       </div>
