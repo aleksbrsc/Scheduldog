@@ -24,8 +24,7 @@ namespace backend.Controllers
                 var jsonPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "schedules.json");
                 var jsonData = await System.IO.File.ReadAllTextAsync(jsonPath);
 
-
-                var fullPrompt = @$"
+                var fullPrompt = $@"
 You are an assistant that helps optimize student course schedules.
 
 A user will provide a list of schedules and a set of preferences (e.g., 'I want early classes', 'minimize commuting', 'prefer classes on Tues/Thurs only').
@@ -50,25 +49,29 @@ Here is the list of course schedules (in JSON):
 
                 var result = await _geminiService.GenerateTextAsync(fullPrompt);
 
-                var match = Regex.Match(result, @"```json\s * (.*?)\s *```", RegexOptions.Singleline);
+                // Extract the JSON inside the code block
+                var match = Regex.Match(result, @"```json\s*(\{.*?\})\s*```", RegexOptions.Singleline);
                 if (match.Success)
                 {
-                    var extractedJson = match.Groups[1].Value;
-                    using var doc = JsonDocument.Parse(extractedJson);
-                    var safeJson = JsonDocument.Parse(doc.RootElement.GetRawText()).RootElement;
-                    return Ok(safeJson);
+                    var extractedJson = match.Groups[1].Value.Trim();
 
+                    // Validate the extracted JSON
+                    using var doc = JsonDocument.Parse(extractedJson);
+                    return Ok(JsonDocument.Parse(doc.RootElement.GetRawText()).RootElement);
                 }
 
+                // Fallback if no JSON was found
                 return Ok(new { response = result });
+            }
+            catch (JsonException jsonEx)
+            {
+                return BadRequest(new { error = "Invalid JSON format from Gemini.", details = jsonEx.Message });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { error = ex.Message });
             }
         }
-
-
     }
 
     public class PromptRequest

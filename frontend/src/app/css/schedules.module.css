@@ -50,8 +50,33 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
-.schedule_card:nth-child(even) { background-color: #F5F5F5; } /* Light White */
-.schedule_card:nth-child(odd) { background-color: #E0E0E0; } /* Light Grey */
+.schedule_card:nth-child(even) {
+    background-color: #F5F5F5;
+}
+
+.schedule_card:nth-child(odd) {
+    background-color: #E0E0E0;
+}
+
+.star_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: opacity 0.2s;
+}
+
+.star_button img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.star_button:hover {
+    opacity: .7;
+}
+
 
 .schedule_card:hover {
     background-color: var(--dark);
@@ -96,13 +121,13 @@
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
 }
-  
+
 #calendar_controls_bottom button {
-padding: 0.5rem 1rem;
-border-radius: 5px;
-border: 1px solid var(--gray_border);
-background-color: var(--light);
-cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--gray_border);
+    background-color: var(--light);
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {

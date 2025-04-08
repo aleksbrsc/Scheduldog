@@ -96,3 +96,23 @@ a {
       --inline_padding: 1.5rem;
   }
 }
+
+/* antd */
+.ant-modal-title {
+  font-weight: 113 !important;
+  font-family: "Aeonik", sans-serif;
+  font-size: 1.5rem !important;
+}
+
+.ant-btn-primary {
+  background-color: black !important;
+  color: white !important;
+  border-color: black !important;
+}
+
+.ant-btn-primary:hover, 
+.ant-btn-primary:focus {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: white !important;
+  border-color: rgba(0, 0, 0, 0.8) !important;
+}

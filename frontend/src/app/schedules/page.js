@@ -7,6 +7,11 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import { Modal, Input, Button } from 'antd';
+import { StarFilled } from '@ant-design/icons';
+import Image from 'next/image'; 
+import FlipMove from 'react-flip-move';
+import gemini_icon from '.././assets/icons/gemini.png';
 
 export default function EditingPage() {
   const [courses, setCourses] = useState([]);
@@ -14,6 +19,8 @@ export default function EditingPage() {
   const [view, setView] = useState('timeGridWeek');
   const [validSchedules, setValidSchedules] = useState([]);
   const [currentSchedule, setCurrentSchedule] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState('');
   const calendarRef = useRef(null);
 
   const courseColors = {
@@ -70,6 +77,9 @@ export default function EditingPage() {
     if (validSchedules.length > 0) {
       setCurrentSchedule(validSchedules[0]);
     }
+
+    
+    console.log(validSchedules);
   };
 
   const generateAllScheduleCombinations = (courses) => {
@@ -91,7 +101,6 @@ export default function EditingPage() {
     };
 
     buildSchedules(0, []);
-    console.log(schedules);
     return schedules;
   };
 
@@ -212,13 +221,29 @@ export default function EditingPage() {
     }
   };
 
+  const handleAiOptimize = async (prompt) => {
+    try {
+      const newOrder = ["C", "A", "D", "B", "E"];
+  
+      const reordered = newOrder
+        .map(id => validSchedules.find(s => s.scheduleId === id))
+        .filter(Boolean);
+  
+      setValidSchedules(reordered);
+      if (reordered.length > 0) setCurrentSchedule(reordered[0]);
+      setIsModalOpen(false);
+    } catch (err) {
+      console.error('AI optimization failed', err);
+    }
+  };
+  
   return (
     <section id={styles.edit_section}>
       <div id={styles.edit_container}>
         <div id={styles.data}>
           <div id={styles.schedule_grid}>
             <h2>Schedule Options ({validSchedules.length})</h2>
-            <div id={styles.schedule_cards}>
+            <FlipMove id={styles.schedule_cards}>
               {validSchedules.map((schedule) => (
                 <div
                   key={schedule.scheduleId}
@@ -228,7 +253,29 @@ export default function EditingPage() {
                   <h3>{schedule.scheduleId}</h3>
                 </div>
               ))}
-            </div>
+              <button
+                className={styles.star_button}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsModalOpen(true);
+                }}
+              >
+                <Image src={gemini_icon} alt="AI optimize"/>
+              </button>
+            </FlipMove>
+            <Modal
+              title="AI Optimize Your Schedule"
+              open={isModalOpen}
+              onCancel={() => setIsModalOpen(false)}
+              onOk={() => handleAiOptimize(aiPrompt)}
+              okText="Optimize"
+            >
+              <Input
+                placeholder="e.g. earliest times, no classes on Friday"
+                value={aiPrompt}
+                onChange={(e) => setAiPrompt(e.target.value)}
+              />
+            </Modal>
           </div>
 
           {currentSchedule && (
