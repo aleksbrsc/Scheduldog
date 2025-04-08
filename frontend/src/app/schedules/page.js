@@ -277,7 +277,7 @@ export default function EditingPage() {
       <div id={styles.edit_container}>
         <div id={styles.data}>
           <div id={styles.schedule_grid}>
-            <h2>Schedule Options ({validSchedules.length})<Spin style={{marginLeft: '.75rem'}} spinning={aiLoading} tip="Optimizing schedule..." /></h2>
+            <h2>Schedule Options ({validSchedules.length})</h2>
             <FlipMove id={styles.schedule_cards}>
               {validSchedules.map((schedule) => (
                 <div
@@ -294,8 +294,13 @@ export default function EditingPage() {
                   e.stopPropagation();
                   setIsModalOpen(true);
                 }}
+                disabled={aiLoading}
               >
-                <Image src={gemini_icon} alt="AI optimize" />
+                {aiLoading ? (
+                  <Spin style={{marginLeft: ".4rem"}} spinning={aiLoading} tip="Optimizing schedule..." />
+                ) : (
+                  <Image src={gemini_icon} alt="AI optimize" />
+                )}
               </button>
             </FlipMove>
             <Modal
