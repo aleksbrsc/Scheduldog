@@ -146,10 +146,22 @@
 #calendar_controls_bottom {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    align-items: center;
+    gap: 2rem;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s;
     margin-top: 1rem;
+}
+
+#left_right_buttons {
+    display: flex;
+    gap: .5rem;
+}
+
+#calendar_controls_bottom #left_right_buttons button {
+    padding-top: .25rem;
+    font-size: 1.5rem;
+    border: 1px solid var(--dark_25);
 }
 
 #calendar_controls_bottom button {

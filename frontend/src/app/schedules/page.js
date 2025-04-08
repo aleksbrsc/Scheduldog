@@ -7,11 +7,11 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { Modal, Input, Button } from 'antd';
-import { StarFilled } from '@ant-design/icons';
+import { Modal, Input, Tabs } from 'antd';
 import Image from 'next/image';
 import FlipMove from 'react-flip-move';
 import gemini_icon from '.././assets/icons/gemini.png';
+const { TabPane } = Tabs;
 
 export default function EditingPage() {
   const [courses, setCourses] = useState([]);
@@ -330,7 +330,7 @@ export default function EditingPage() {
           <FullCalendar
             ref={calendarRef}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView={view}
+            initialView="timeGridWeek"
             headerToolbar={{
               left: '',
               center: 'title',
@@ -356,14 +356,16 @@ export default function EditingPage() {
           />
 
           <div id={styles.calendar_controls_bottom}>
-            <div>
+            <div id={styles.left_right_buttons}>
               <button onClick={() => calendarRef.current?.getApi().prev()}>←</button>
               <button onClick={() => calendarRef.current?.getApi().next()}>→</button>
             </div>
-            <div id={styles.calendar_controls}>
-              <button onClick={() => handleViewChange('timeGridDay')}>Day</button>
-              <button onClick={() => handleViewChange('timeGridWeek')}>Week</button>
-              <button onClick={() => handleViewChange('dayGridMonth')}>Month</button>
+            <div id="calendar_controls">
+              <Tabs defaultActiveKey="timeGridWeek" onChange={handleViewChange} items={[
+                { label: 'Day', key: 'timeGridDay' },
+                { label: 'Week', key: 'timeGridWeek' },
+                { label: 'Month', key: 'dayGridMonth' },
+              ]} />
             </div>
           </div>
         </div>

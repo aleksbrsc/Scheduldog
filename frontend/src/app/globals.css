@@ -28,6 +28,10 @@ a {
   text-decoration: none;
 }
 
+strong {
+  font-weight: 126 !important;
+}
+
 * {
   font-family: "Aeonik", sans-serif;
   font-weight: lighter;
@@ -73,6 +77,7 @@ a {
   --dark_60: rgba(0, 0, 0, 0.6);
   --dark_50: rgba(0, 0, 0, 0.5);
   --dark_35: rgba(0, 0, 0, 0.35);
+  --dark_25: rgba(0, 0, 0, 0.25);
   --dark_15: rgba(0, 0, 0, 0.15);
   --dark_10: rgba(0, 0, 0, 0.1);
   --dark_5: rgba(0, 0, 0, 0.05);
@@ -122,6 +127,22 @@ a {
   font-weight: 87 !important;
 }
 
-strong {
-  font-weight: 126 !important;
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--dark) !important;
+  text-shadow: none;
+  font-weight: 113 !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: var(--dark) !important;
+}
+
+.ant-tabs-tab:hover {
+  color: var(--dark) !important;
+  text-shadow: none;
+  font-weight: 113 !important;
+}
+
+.ant-tabs-nav::before {
+  border: 2px solid var(--dark_10) !important;
 }
