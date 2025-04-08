@@ -235,7 +235,8 @@ export default function EditingPage() {
   };
 
   const handleAiOptimize = async (prompt) => {
-    setAiLoading(true);
+    setAiLoading(true);    
+    setIsModalOpen(false);
     try {
       const response = await fetch('http://localhost:5139/api/Gemini/generate', {
         method: 'POST',
@@ -267,6 +268,7 @@ export default function EditingPage() {
       toast.error('Failed to optimize schedule');
     } finally {
       setAiLoading(false);
+      // setIsModalOpen(false);
     }
   };
 
