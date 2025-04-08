@@ -116,3 +116,8 @@ a {
   color: white !important;
   border-color: rgba(0, 0, 0, 0.8) !important;
 }
+
+.ant-input {
+  font-family: "Aeonik", sans-serif !important;
+  font-weight: 87 !important;
+}
